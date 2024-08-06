@@ -39,7 +39,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 MyButton(text: 'Save', ontap: widget.saveAction),
-                MyButton(text: 'Cancel', ontap: Navigator.of(context).pop,)
+                MyButton(text: 'Cancel', ontap:Navigator.of(context).pop),
               ],
             ),
 

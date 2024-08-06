@@ -36,14 +36,15 @@ class _TaskTileState extends State<TaskTile> {
         child: Row(
           children: [
             Checkbox(value: widget.taskDone, onChanged: _onchanged),
-            Text(widget.text,
-
-              style: TextStyle(
-                  decoration: !widget.taskDone ?
-                  TextDecoration.none :
-                  TextDecoration.lineThrough ),
+            Expanded(
+              child: Text(widget.text,
+              
+                style: TextStyle(
+                    decoration: !widget.taskDone ?
+                    TextDecoration.none :
+                    TextDecoration.lineThrough ),
+              ),
             ),
-            //todo: fix overflowing text issue
           ],
         ),
       ),

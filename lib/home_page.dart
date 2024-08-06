@@ -32,7 +32,8 @@ class _HomeState extends State<Home> {
     setState(() {
       taskTiles.add(TaskTile(taskDone: false, text: _controller.text));
     });
-
+    Navigator.of(context).pop();
+    _controller.text = '';
   }
 
   @override
