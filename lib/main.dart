@@ -32,4 +32,4 @@ class _AppState extends State<App> {
   }
 }
 
-// todo: solve 1. empty task 2. overflowing text task
+// todo: solve 1. empty task
