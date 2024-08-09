@@ -5,14 +5,21 @@ import  'package:flutter_slidable/flutter_slidable.dart';
 
 
 // Custom task-tile
+//
 
 class TaskTile extends StatefulWidget {
-  TaskTile({super.key, required this.taskDone, required this.text});
+  TaskTile({
+    super.key,
+    required this.taskDone,
+    required this.text,
+    required this.ontap,
+    required this.slideAction,
+  });
 
   bool taskDone;
   String text;
-
-  void _toogleTaskState() => taskDone = !taskDone;
+  VoidCallback ontap;
+  void Function(BuildContext) slideAction;
 
   @override
   State<TaskTile> createState() => _TaskTileState();
@@ -20,21 +27,17 @@ class TaskTile extends StatefulWidget {
 
 class _TaskTileState extends State<TaskTile> {
 
-  void _completeTask({bool? value}) => setState((){
-    widget._toogleTaskState();
-  });
-  void _onchanged(bool? value) => _completeTask();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _completeTask,
+      onTap: widget.ontap,
       child: Slidable(
-        //key: ValueKey(0),
+        key: ValueKey(0),
         endActionPane: ActionPane(
           motion: BehindMotion(),
           children: [
             SlidableAction(
-              onPressed: (context) {},
+              onPressed: widget.slideAction,
               icon: Icons.delete,
               label: 'Delete',
             ),
@@ -50,7 +53,7 @@ class _TaskTileState extends State<TaskTile> {
           ),
           child: Row(
             children: [
-              Checkbox(value: widget.taskDone, onChanged: _onchanged),
+              Checkbox(value: widget.taskDone, onChanged: (value) => widget.ontap() ),
               Expanded(
                 child: Text(widget.text,
 

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/util/task_tile.dart';
-import 'add_task_dialog.dart';
 import 'home_page.dart';
 
 void main() => runApp(const App());
