@@ -55,11 +55,15 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Project Structure
 
+The project is organized as follows:
+
+```plaintext
 lib/
-|- Database/ # Data models
-|- screens/ # UI screens
-|- util/ # Reusable widgets
-|- main.dart # Entry point of the app
+├── Database/      # Data models
+├── screens/       # UI screens
+├── util/          # Utility functions and reusable widgets
+└── main.dart      # Entry point of the app
+```
 
 
 ## Contributing
@@ -75,6 +79,3 @@ Contributions are welcome! Please open an issue or submit a pull request.
 5. Push to the branch: `git push origin feature-branch-name`.
 6. Open a pull request.
 
-
-## Acknowledgements
-- [Ihim Arinze] for inspiration and guidance.
