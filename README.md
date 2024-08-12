@@ -13,12 +13,12 @@ This app allows users to manage their daily tasks efficiently.
 ## Screenshots
 
 <p align="center">
-  <img src="assets/screenshots/splash_screen.jpg" alt="Splash Screen" width="45%" />
-  <img src="assets/screenshots/home.jpg" alt="Home Screen" width="45%" />
+  <img src="assets/screenshots/splash_screen.jpg" alt="Splash Screen" width="30%" />
+  <img src="assets/screenshots/home.jpg" alt="Home Screen" width="30%" />
 </p>
 <p align="center">
-  <img src="assets/screenshots/add_task_dialog.jpg" alt="Add Task Dialog" width="45%" />
-  <img src="assets/screenshots/delete_task.jpg" alt="Delete Task" width="45%" />
+  <img src="assets/screenshots/add_task_dialog.jpg" alt="Add Task Dialog" width="30%" />
+  <img src="assets/screenshots/delete_task.jpg" alt="Delete Task" width="30%" />
 </p>
 
 
