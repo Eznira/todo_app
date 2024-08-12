@@ -8,17 +8,14 @@ This app allows users to manage their daily tasks efficiently.
 - **Task Management**: Add, delete, and mark tasks as completed.
 - **Offline Support**: Access tasks without an internet connection.
 
-## Screenshots
 
 ## Screenshots
 
 <p align="center">
-  <img src="assets/screenshots/splash_screen.jpg" alt="Splash Screen" width="30%" />
-  <img src="assets/screenshots/home.jpg" alt="Home Screen" width="30%" />
-</p>
-<p align="center">
-  <img src="assets/screenshots/add_task_dialog.jpg" alt="Add Task Dialog" width="30%" />
-  <img src="assets/screenshots/delete_task.jpg" alt="Delete Task" width="30%" />
+  <img src="assets/screenshots/splash_screen.jpg" alt="Splash Screen" width="20%" />
+  <img src="assets/screenshots/home.jpg" alt="Home Screen" width="20%" />
+  <img src="assets/screenshots/add_task_dialog.jpg" alt="Add Task Dialog" width="20%" />
+  <img src="assets/screenshots/delete_task.jpg" alt="Delete Task" width="20%" />
 </p>
 
 
