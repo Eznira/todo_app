@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'home_page.dart';
+import 'package:todo_app/screens/Splash_screen.dart';
+import 'screens/home_page.dart';
 
 void main() async {
 
@@ -27,7 +28,7 @@ class _AppState extends State<App> {
     return MaterialApp(
       title: 'Todo',
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: SplashScreen(),
       theme: ThemeData(
         primaryColor: Colors.purple,
         useMaterial3: true,
