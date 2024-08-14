@@ -83,12 +83,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    /// Database instance containing the list of task data and other functions
-    /// for dabaase operaions.
-    /// Uses hive for local storage.
-
-    final db = context.read<DataBase>();
-
     return Consumer<DataBase>(
       builder: (context, value, child) => Scaffold(
         appBar: AppBar(
@@ -99,18 +93,18 @@ class _HomeState extends State<Home> {
             onPressed: _addTaskPopUp, child: const Icon(Icons.add)),
         body: ListView.builder(
           itemBuilder: (context, index) {
-            if (db.taskList.isEmpty) {
+            if (value.taskList.isEmpty) {
               Container();
             } else {
               return TaskTile(
-                taskDone: db.taskList[index][0],
-                text: db.taskList[index][1],
+                taskDone: value.taskList[index][0],
+                text: value.taskList[index][1],
                 ontap: () => _toggleTaskState(index),
                 slideAction: (context) => _deleteTask(index),
               );
             }
           },
-          itemCount: db.taskList.length,
+          itemCount: value.taskList.length,
         ),
       ),
     );

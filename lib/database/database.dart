@@ -14,25 +14,19 @@ class DataBase extends ChangeNotifier {
   // loads first task
   void loadFirstTask() {
     taskList.add([false, "Write your first todo task!"]);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      notifyListeners();
-    });
+    notifyListeners();
   }
 
   // loads from local storage
   void getLocalStorage() {
     taskList = taskListBox.get("taskList");
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      notifyListeners();
-    });
+    notifyListeners();
   }
 
   // save to local storage
   void updateLocalStorage() {
     taskListBox.put("taskList", taskList);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      notifyListeners();
-    });
+    notifyListeners();
   }
 
   void addTask(List task) {
