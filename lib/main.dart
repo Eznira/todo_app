@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/database/database.dart';
 import 'package:todo_app/screens/Splash_screen.dart';
-import 'screens/home_page.dart';
 
 void main() async {
-
   ///Initialize hive box
   await Hive.initFlutter();
 
   ///Create local storage for tasklist
   var localStorage = await Hive.openBox("taskList");
 
-  runApp(const App());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => DataBase(),
+      child: const App(),
+    ),
+  );
 }
 
 class App extends StatefulWidget {
@@ -37,7 +41,8 @@ class _AppState extends State<App> {
           iconTheme: IconThemeData(
             color: Colors.white,
           ),
-          titleTextStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 32),
+          titleTextStyle: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 32),
         ),
       ),
     );
