@@ -14,13 +14,11 @@ class DataBase extends ChangeNotifier {
   // loads first task
   void loadFirstTask() {
     taskList.add([false, "Write your first todo task!"]);
-    notifyListeners();
   }
 
   // loads from local storage
   void getLocalStorage() {
     taskList = taskListBox.get("taskList");
-    notifyListeners();
   }
 
   // save to local storage
