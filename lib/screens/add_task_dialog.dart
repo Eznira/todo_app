@@ -20,7 +20,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Theme.of(context).colorScheme.primary,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       content: Container(
         height: 120,
         child: Column(
@@ -28,7 +28,8 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
             TextField(
               controller: widget.controller,
               decoration: InputDecoration(
-                fillColor: Theme.of(context).colorScheme.secondary,
+                filled: true,
+                fillColor: Theme.of(context).colorScheme.tertiary,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),

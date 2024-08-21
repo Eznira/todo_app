@@ -43,13 +43,15 @@ class _TaskTileState extends State<TaskTile> {
           margin: EdgeInsets.fromLTRB(10, 10, 10, 5),
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.primary,
+            color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
             children: [
               Checkbox(
-                  value: widget.taskDone, onChanged: (value) => widget.ontap()),
+                  activeColor: Theme.of(context).colorScheme.inversePrimary,
+                  value: widget.taskDone,
+                  onChanged: (value) => widget.ontap()),
               Expanded(
                 child: Text(
                   widget.text,
