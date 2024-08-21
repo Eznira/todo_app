@@ -1,25 +1,30 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 //Custom Alertdialog buttons
 class MyButton extends StatelessWidget {
-  MyButton({
-            super.key,
-            required String this.text,
-            required VoidCallback this.ontap});
+  MyButton(
+      {super.key, required String this.text, required VoidCallback this.ontap});
 
   final String text;
   VoidCallback ontap;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: ontap,
-      child: Text(text),style: ElevatedButton.styleFrom(
-      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Adjust padding as needed
-      textStyle: TextStyle(fontSize: 14.0), // Adjust font size as needed
-    ),);
-
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.background,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text(
+            text,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ),
+      ),
+    );
   }
 }

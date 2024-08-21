@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import  'package:flutter_slidable/flutter_slidable.dart';
-
-
-
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 // Custom task-tile
 //
@@ -26,7 +23,6 @@ class TaskTile extends StatefulWidget {
 }
 
 class _TaskTileState extends State<TaskTile> {
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -41,26 +37,26 @@ class _TaskTileState extends State<TaskTile> {
               icon: Icons.delete,
               label: 'Delete',
             ),
-
           ],
         ),
         child: Container(
           margin: EdgeInsets.fromLTRB(10, 10, 10, 5),
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Colors.purple[100],
-            borderRadius:   BorderRadius.circular(20),
+            color: Theme.of(context).colorScheme.primary,
+            borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
             children: [
-              Checkbox(value: widget.taskDone, onChanged: (value) => widget.ontap() ),
+              Checkbox(
+                  value: widget.taskDone, onChanged: (value) => widget.ontap()),
               Expanded(
-                child: Text(widget.text,
-
+                child: Text(
+                  widget.text,
                   style: TextStyle(
-                      decoration: !widget.taskDone ?
-                      TextDecoration.none :
-                      TextDecoration.lineThrough ),
+                      decoration: !widget.taskDone
+                          ? TextDecoration.none
+                          : TextDecoration.lineThrough),
                 ),
               ),
             ],
@@ -70,5 +66,3 @@ class _TaskTileState extends State<TaskTile> {
     );
   }
 }
-
-

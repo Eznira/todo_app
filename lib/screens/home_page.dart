@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/database/database.dart';
+import 'package:todo_app/database/theme_provider.dart';
 import 'package:todo_app/screens/add_task_dialog.dart';
 import 'package:todo_app/util/task_tile.dart';
 
@@ -31,10 +32,6 @@ class _HomeState extends State<Home> {
   /// Called when the save button on the addTaskDialog is pressed
   /// Saves task by appending to taskList and then updating the local db.
   void _saveTask() {
-    // setState(() {
-    //   db.taskList.add([false, _controller.text]);
-    //   db.updateLocalStorage();
-    // });
     final db = context.read<DataBase>();
     db.addTask([false, _controller.text]);
     Navigator.of(context).pop();
@@ -44,22 +41,19 @@ class _HomeState extends State<Home> {
   /// Toogles task from done to undone or vice-versa and saves to the local
   /// db.
   void _toggleTaskState(int index) {
-    // setState(() {
-    //   db.taskList[index][0] = !db.taskList[index][0];
-    //   db.updateLocalStorage();
-    // });
     final db = context.read<DataBase>();
     db.toggleTaskState(index);
   }
 
   /// Deletes tasks from taskList and save changes in the local db.
   void _deleteTask(int index) {
-    // setState(() {
-    //   db.taskList.removeAt(index);
-    //   db.updateLocalStorage();
-    // });
     final db = context.read<DataBase>();
     db.removeTask(index);
+  }
+
+  void _toggleTheme(bool value) {
+    context.read<DataBase>().toggleThemeValue();
+    context.read<ThemeProvider>().toggleTheme();
   }
 
   @override
@@ -87,7 +81,12 @@ class _HomeState extends State<Home> {
       builder: (context, value, child) => Scaffold(
         appBar: AppBar(
           title: const Text('Todo'),
-          backgroundColor: Colors.purple,
+          actions: [
+            Switch(
+              value: value.themeValue,
+              onChanged: _toggleTheme,
+            )
+          ],
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: _addTaskPopUp, child: const Icon(Icons.add)),
