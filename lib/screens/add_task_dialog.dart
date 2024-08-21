@@ -4,15 +4,13 @@ import 'package:todo_app/util/button.dart';
 // Add task widget
 
 class AddTaskDialog extends StatefulWidget {
-  AddTaskDialog({
-                super.key,
-                required TextEditingController this.controller,
-                required this.saveAction
-  });
+  AddTaskDialog(
+      {super.key,
+      required TextEditingController this.controller,
+      required this.saveAction});
 
   TextEditingController controller;
   void Function() saveAction;
-
 
   @override
   State<AddTaskDialog> createState() => _AddTaskDialogState();
@@ -22,6 +20,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       content: Container(
         height: 120,
         child: Column(
@@ -29,20 +28,31 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
             TextField(
               controller: widget.controller,
               decoration: InputDecoration(
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                filled: true,
+                fillColor: Theme.of(context).colorScheme.tertiary,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary), // Blue border on focus
+                ),
               ),
             ),
             Spacer(),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 MyButton(text: 'Save', ontap: widget.saveAction),
-                SizedBox(width: 12,),
-                MyButton(text: 'Cancel', ontap:Navigator.of(context).pop),
+                SizedBox(
+                  width: 12,
+                ),
+                MyButton(text: 'Cancel', ontap: Navigator.of(context).pop),
               ],
             ),
-
           ],
         ),
       ),

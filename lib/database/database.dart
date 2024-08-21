@@ -8,6 +8,13 @@ import 'package:hive/hive.dart';
 class DataBase extends ChangeNotifier {
   List taskList = [];
 
+  bool themeValue = false;
+
+  void toggleThemeValue() {
+    themeValue = !themeValue;
+    notifyListeners();
+  }
+
   // Reference localStorage box: "taskListBox"
   final taskListBox = Hive.box("taskList");
 
