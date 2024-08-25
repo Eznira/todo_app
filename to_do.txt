@@ -1,0 +1,5 @@
+To add quick note app:
+-----------------------------------------------------
+
+1. Add a drawer to navigate todo and quick note paege
+2.

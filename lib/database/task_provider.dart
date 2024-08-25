@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 /// Database Class
 ///
 
-class DataBase extends ChangeNotifier {
+class TaskProvider extends ChangeNotifier {
   List taskList = [];
 
   bool themeValue = false;

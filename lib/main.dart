@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/database/database.dart';
-import 'package:todo_app/database/theme_provider.dart';
-import 'package:todo_app/screens/Splash_screen.dart';
+import 'package:todo_app/database/task_provider.dart';
+import 'package:todo_app/notes_dir/screens/note_page.dart';
+import 'package:todo_app/screens/home_page.dart';
+
+import 'database/theme_provider.dart';
 
 void main() async {
   ///Initialize hive box
@@ -15,7 +17,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => DataBase()),
+        ChangeNotifierProvider(create: (_) => TaskProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: App(),
@@ -31,8 +33,12 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Todo',
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: const Home(),
       theme: Provider.of<ThemeProvider>(context).currentTheme,
+      routes: {
+        "/home": (context) => Home(),
+        "/note_page": (context) => NotePage(),
+      },
     );
   }
 }
