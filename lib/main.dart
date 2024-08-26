@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/database/task_provider.dart';
 import 'package:todo_app/notes_dir/data/notes_provider.dart';
 import 'package:todo_app/notes_dir/screens/note_page.dart';
+import 'package:todo_app/screens/Splash_screen.dart';
 import 'package:todo_app/screens/home_page.dart';
 
 import 'database/theme_provider.dart';
@@ -39,7 +40,7 @@ class App extends StatelessWidget {
       home: const Home(),
       theme: Provider.of<ThemeProvider>(context).currentTheme,
       routes: {
-        "/home": (context) => Home(),
+        "/home": (context) => SplashScreen(),
         "/note_page": (context) => NotePage(),
       },
     );
