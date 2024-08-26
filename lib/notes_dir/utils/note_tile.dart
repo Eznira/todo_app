@@ -22,14 +22,14 @@ class NoteTile extends StatelessWidget {
       MaterialPageRoute(
           builder: (context) => NewNote(
                 note: note,
-                isNewNote: true,
+                isNewNote: false,
               )),
     );
   }
 
   void _onCopy(BuildContext context) {
     Clipboard.setData(
-      ClipboardData(text: note.text + '\n' + note.title),
+      ClipboardData(text: '${note.text}\n${note.title}'),
     );
 
     // ScaffoldMessenger.of(context).showSnackBar(
@@ -70,7 +70,7 @@ class NoteTile extends StatelessWidget {
                             context: context,
                             bodyBuilder: (context) => NoteMenu(
                               onCopy: () => _onCopy(context),
-                              onDelete: () {},
+                              onDelete: onDelete,
                               onEdit: () => _onEdit(context),
                             ),
                           ),
@@ -90,8 +90,6 @@ class NoteTile extends StatelessWidget {
     );
   }
 }
-
-// todo: implement delete function
 
 void showCustomSnackbar(BuildContext context) {
   final overlayState = Overlay.of(context);

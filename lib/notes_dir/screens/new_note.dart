@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/notes_dir/data/notes_provider.dart';
 
 import '../data/note_model.dart';
 
@@ -19,10 +21,12 @@ class _NewNoteState extends State<NewNote> {
   TextEditingController _titleController = TextEditingController();
   TextEditingController _mainTextController = TextEditingController();
 
+  late final noteProvider = context.read<NotesProvider>();
+
   @override
   void initState() {
     super.initState();
-    if (widget.isNewNote) {
+    if (!widget.isNewNote) {
       _titleController.text = widget.note.title;
       _mainTextController.text = widget.note.text;
 
@@ -45,6 +49,12 @@ class _NewNoteState extends State<NewNote> {
   void _save() {
     widget.note.title = _titleController.text;
     widget.note.text = _mainTextController.text;
+
+    if (widget.isNewNote) {
+      noteProvider.addNewNote(widget.note);
+    } else {
+      noteProvider.updateExistingNote(widget.note);
+    }
 
     Navigator.pop(context);
   }
@@ -110,7 +120,7 @@ class _NewNoteState extends State<NewNote> {
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Text(
-                                  widget.isNewNote
+                                  !widget.isNewNote
                                       ? widget.note.title
                                       : "Untitled",
                                   style: const TextStyle(

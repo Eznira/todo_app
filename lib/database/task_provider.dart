@@ -6,46 +6,34 @@ import 'package:hive/hive.dart';
 ///
 
 class TaskProvider extends ChangeNotifier {
-  List taskList = [];
-
-  bool themeValue = false;
-
-  void toggleThemeValue() {
-    themeValue = !themeValue;
-    notifyListeners();
-  }
+  late List taskList = taskBox.get("taskList");
 
   // Reference localStorage box: "taskListBox"
-  final taskListBox = Hive.box("taskList");
+  final taskBox = Hive.box("taskList");
+
+  // save to local storage
+  void _updateLocalStorage() {
+    taskBox.put("taskList", taskList);
+    notifyListeners();
+  }
 
   // loads first task
   void loadFirstTask() {
     taskList.add([false, "Write your first todo task!"]);
   }
 
-  // loads from local storage
-  void getLocalStorage() {
-    taskList = taskListBox.get("taskList");
-  }
-
-  // save to local storage
-  void updateLocalStorage() {
-    taskListBox.put("taskList", taskList);
-    notifyListeners();
-  }
-
   void addTask(List task) {
     taskList.add(task);
-    updateLocalStorage();
+    _updateLocalStorage();
   }
 
   void removeTask(int index) {
     taskList.removeAt(index);
-    updateLocalStorage();
+    _updateLocalStorage();
   }
 
   void toggleTaskState(int index) {
     taskList[index][0] = !taskList[index][0];
-    updateLocalStorage();
+    _updateLocalStorage();
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/database/task_provider.dart';
 import 'package:todo_app/database/theme_provider.dart';
+import 'package:todo_app/database/themes.dart';
 import 'package:todo_app/screens/add_task_dialog.dart';
 import 'package:todo_app/util/task_tile.dart';
 
@@ -52,7 +53,6 @@ class _HomeState extends State<Home> {
   }
 
   void _toggleTheme(bool value) {
-    context.read<TaskProvider>().toggleThemeValue();
     context.read<ThemeProvider>().toggleTheme();
   }
 
@@ -66,10 +66,8 @@ class _HomeState extends State<Home> {
     /// Uses hive for local storage.
     final db = context.read<TaskProvider>();
 
-    if (db.taskListBox.get('taskList') == null) {
+    if (db.taskBox.get('taskList') == null) {
       db.loadFirstTask();
-    } else {
-      db.getLocalStorage();
     }
 
     super.initState();
@@ -77,8 +75,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TaskProvider>(
-      builder: (context, value, child) => Scaffold(
+    return Consumer2<ThemeProvider, TaskProvider>(
+      builder: (context, themeProvider, taskProvider, child) => Scaffold(
         appBar: AppBar(
           title: const Text('Todo'),
         ),
@@ -93,8 +91,8 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
+                      const Padding(
+                        padding: EdgeInsets.all(16.0),
                         child: Text(
                           'Menu',
                           style: TextStyle(
@@ -107,7 +105,9 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Switch(
-                            value: value.themeValue,
+                            value: themeProvider.currentTheme == lightMode
+                                ? false
+                                : true,
                             onChanged: _toggleTheme,
                           ),
                         ],
@@ -137,18 +137,18 @@ class _HomeState extends State<Home> {
             onPressed: _addTaskPopUp, child: const Icon(Icons.add)),
         body: ListView.builder(
           itemBuilder: (context, index) {
-            if (value.taskList.isEmpty) {
+            if (taskProvider.taskList.isEmpty) {
               Container();
             } else {
               return TaskTile(
-                taskDone: value.taskList[index][0],
-                text: value.taskList[index][1],
+                taskDone: taskProvider.taskList[index][0],
+                text: taskProvider.taskList[index][1],
                 ontap: () => _toggleTaskState(index),
                 slideAction: (context) => _deleteTask(index),
               );
             }
           },
-          itemCount: value.taskList.length,
+          itemCount: taskProvider.taskList.length,
         ),
       ),
     );

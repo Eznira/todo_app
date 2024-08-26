@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/database/task_provider.dart';
+import 'package:todo_app/notes_dir/data/notes_provider.dart';
 import 'package:todo_app/notes_dir/screens/note_page.dart';
 import 'package:todo_app/screens/home_page.dart';
 
@@ -12,13 +13,15 @@ void main() async {
   await Hive.initFlutter();
 
   ///Create local storage for tasklist
-  var localStorage = await Hive.openBox("taskList");
+  var localStorageTask = await Hive.openBox("taskList");
+  var localStorageNotes = await Hive.openBox("noteList");
 
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => TaskProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => NotesProvider()),
       ],
       child: App(),
     ),

@@ -56,7 +56,10 @@ class NoteMenu extends StatelessWidget {
           ),
           Expanded(
             child: GestureDetector(
-              onTap: onDelete,
+              onTap: () {
+                Navigator.pop(context);
+                onDelete();
+              },
               child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Center(
@@ -73,5 +76,3 @@ class NoteMenu extends StatelessWidget {
     );
   }
 }
-
-// todo: remove duplicate code
