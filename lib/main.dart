@@ -42,7 +42,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Todo',
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: Home(),
       theme: Provider.of<ThemeProvider>(context).currentTheme,
       routes: {
         "/home": (context) => Home(),
