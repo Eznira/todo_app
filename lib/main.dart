@@ -10,12 +10,17 @@ import 'package:todo_app/screens/home_page.dart';
 import 'database/theme_provider.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   ///Initialize hive box
   await Hive.initFlutter();
 
   ///Create local storage for tasklist
-  var localStorageTask = await Hive.openBox("taskList");
-  var localStorageNotes = await Hive.openBox("noteList");
+  await Hive.openBox("taskList");
+  await Hive.openBox("noteList");
+
+  // Register the global lifecycle observer
+  WidgetsBinding.instance.addObserver(AppLifecycleObserver());
 
   runApp(
     MultiProvider(
@@ -37,14 +42,26 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Todo',
       debugShowCheckedModeBanner: false,
-      home: const Home(),
+      home: SplashScreen(),
       theme: Provider.of<ThemeProvider>(context).currentTheme,
       routes: {
-        "/home": (context) => SplashScreen(),
+        "/home": (context) => Home(),
         "/note_page": (context) => NotePage(),
       },
     );
   }
 }
 
-// todo: solve 1. empty task
+class AppLifecycleObserver extends WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.detached ||
+        state == AppLifecycleState.inactive) {
+      _closeHiveBoxes();
+    }
+  }
+
+  Future<void> _closeHiveBoxes() async {
+    await Hive.close();
+  }
+}
