@@ -4,11 +4,11 @@ import 'package:hive/hive.dart';
 import 'note_model.dart';
 
 class NotesProvider extends ChangeNotifier {
-  List notes = [];
+  List<Note> notes = [];
 
   //Reference local storage noteList
   // ie., create noteList db:
-  final _noteBox = Hive.box("noteList");
+  final _noteBox = Hive.box("notes");
 
   // first time note
   void _initializeFirstNote() {
@@ -26,19 +26,20 @@ class NotesProvider extends ChangeNotifier {
 
   //Read from noteListBox
   void getLocalStorage() {
-    if (_noteBox.get("noteList") == null) {
+    final storedNotes = _noteBox.get("notes");
+    if (storedNotes == null) {
       _initializeFirstNote();
     } else {
-      notes = _noteBox.get("noteList");
+      notes = List<Note>.from(storedNotes as List<dynamic>);
       print("Getting from local db!...");
     }
   }
 
   // Update noteListBox
   void _updateLocalStorage() {
-    _noteBox.put("noteList", notes);
+    _noteBox.put("notes", notes);
     notifyListeners();
-    print("Succesfully updated db!...");
+    print("Successfully updated db!...");
   }
 
   // addNewNote
