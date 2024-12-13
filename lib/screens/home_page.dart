@@ -78,7 +78,10 @@ class _HomeState extends State<Home> {
     return Consumer2<ThemeProvider, TaskProvider>(
       builder: (context, themeProvider, taskProvider, child) => Scaffold(
         appBar: AppBar(
-          title: const Text('Todo'),
+          title: Text(
+            'Todo',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
         ),
         drawer: Drawer(
           child: ListView(
@@ -91,15 +94,10 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text(
-                          'Menu',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                          ),
-                        ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text('Menu',
+                            style: Theme.of(context).textTheme.headlineMedium),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,

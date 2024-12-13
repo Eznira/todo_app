@@ -10,7 +10,7 @@ class NotesProvider extends ChangeNotifier {
   // ie., create noteList db:
   final _noteBox = Hive.box("notes");
 
-  // first time note
+  // Add sample-dummy note
   void _initializeFirstNote() {
     final note = Note(
         title: 'Fermi Dirac',

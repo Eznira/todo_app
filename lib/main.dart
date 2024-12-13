@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/database/task_provider.dart';
+import 'package:todo_app/database/themes.dart';
 import 'package:todo_app/notes_dir/data/notes_provider.dart';
 import 'package:todo_app/notes_dir/screens/note_page.dart';
 import 'package:todo_app/screens/home_page.dart';
@@ -44,6 +45,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const Home(),
       theme: Provider.of<ThemeProvider>(context).currentTheme,
+      darkTheme: darkMode,
       routes: {
         "/home": (context) => const Home(),
         "/note_page": (context) => const NotePage(),
